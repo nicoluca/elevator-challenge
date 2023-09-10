@@ -1,5 +1,8 @@
 package org.example.domain;
 
+import org.example.domain.policy.ElevatorPolicy;
+import org.example.domain.policy.IdleElevator;
+import org.example.domain.policy.NextIdleElevator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +17,7 @@ class ElevatorSystemImplTest {
 
     @BeforeEach
     void setUp() {
-        this.elevatorSystem = new ElevatorSystemImpl();
+        this.elevatorSystem = new ElevatorSystemImpl(new ElevatorPolicy[]{new IdleElevator(), new NextIdleElevator()});
     }
 
     @Test

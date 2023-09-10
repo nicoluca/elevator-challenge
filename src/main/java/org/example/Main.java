@@ -5,6 +5,9 @@ import org.example.domain.ElevatorRequest;
 import org.example.domain.ElevatorState;
 import org.example.domain.ElevatorSystem;
 import org.example.domain.ElevatorSystemImpl;
+import org.example.domain.policy.ElevatorPolicy;
+import org.example.domain.policy.IdleElevator;
+import org.example.domain.policy.NextIdleElevator;
 
 import java.util.Random;
 import java.util.logging.Logger;
@@ -15,7 +18,7 @@ public class Main {
         System.out.println("Hello, elevator world!");
         System.out.println("Running some random requests...\n");
 
-        ElevatorSystem elevatorSystem = new ElevatorSystemImpl();
+        ElevatorSystem elevatorSystem = new ElevatorSystemImpl(new ElevatorPolicy[]{new IdleElevator(), new NextIdleElevator()});
 
         while (true) {
             elevatorSystem.printState();

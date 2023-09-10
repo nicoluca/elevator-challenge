@@ -1,0 +1,28 @@
+package org.example.domain.policy;
+
+import org.example.domain.Elevator;
+
+import javax.swing.text.html.Option;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Optional;
+
+public class NextIdleElevator extends AbstractElevatorPolicy {
+    // Could be a singleton
+
+    @Override
+    public Optional<Elevator> findElevator(Elevator[] elevators) {
+        logger.info("Looking for the elevator that will be idle the soonest...");
+
+        Optional<Elevator> optionalElevator = Arrays.stream(elevators)
+                .min(Comparator.comparingInt(Elevator::getCurrentDelta));
+
+        if (optionalElevator.isPresent()) {
+            logger.info("Found elevator " + optionalElevator.get() + " that will be idle the soonest");
+            return optionalElevator;
+        } else {
+            logger.warning("No elevator found");
+            return Optional.empty();
+        }
+    }
+}

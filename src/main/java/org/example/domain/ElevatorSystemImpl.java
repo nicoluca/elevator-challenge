@@ -1,7 +1,7 @@
 package org.example.domain;
 
-import lombok.Getter;
 import org.example.config.Config;
+import org.example.domain.policy.ElevatorPolicy;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -16,15 +16,26 @@ public class ElevatorSystemImpl implements ElevatorSystem {
 
     private final Elevator[] elevators = new Elevator[Config.NUMBER_OF_ELEVATORS];
     private final ExecutorService executorService = Executors.newFixedThreadPool(Config.NUMBER_OF_ELEVATORS);
+    private final ElevatorPolicy[] nextElevatorPolicies; // The idea is to have a chain of responsibility of policies, that can be flexibly configured/extended.
 
-    public ElevatorSystemImpl() {
+    public ElevatorSystemImpl(ElevatorPolicy[] nextElevatorPolicies) {
         for (int i = 0; i < elevators.length; i++)
             elevators[i] = new ElevatorImpl();
+
+        this.nextElevatorPolicies = nextElevatorPolicies;
     }
 
     @Override
     public void addRequest(ElevatorRequest elevatorRequest) {
         logger.info("Adding request " + elevatorRequest);
+
+        for (ElevatorPolicy nextElevatorPolicy : nextElevatorPolicies) {
+            Optional<Elevator> elevator = nextElevatorPolicy.findElevator(elevators);
+            if (elevator.isPresent()) {
+                assignRequestToElevator(elevatorRequest, elevator.get());
+                return;
+            }
+        }
 
         // Check if there is an idle elevator
         Optional<Elevator> idleElevator = this.getIdleElevator();
@@ -68,7 +79,7 @@ public class ElevatorSystemImpl implements ElevatorSystem {
     }
 
     private Optional<Elevator> getIdleElevator() {
-        return Arrays.stream(elevators).findAny().filter(
+        return Arrays.stream(elevators).findFirst().filter(
                 elevator -> elevator.getState() == ElevatorState.IDLE);
     }
 
