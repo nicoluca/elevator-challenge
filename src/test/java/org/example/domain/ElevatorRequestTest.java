@@ -12,7 +12,7 @@ class ElevatorRequestTest {
     @DisplayName("Should pass when request is valid")
     void shouldPassWhenRequestIsValid() {
         // given
-        int originFloor = 1;
+        int originFloor = 0;
         int destinationFloor = 2;
         ElevatorState direction = ElevatorState.UP;
 

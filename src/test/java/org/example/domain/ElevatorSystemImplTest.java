@@ -21,7 +21,7 @@ class ElevatorSystemImplTest {
     @Test
     @DisplayName("Test addRequest")
     void testAddRequest() {
-        elevatorSystem.addRequest(new ElevatorRequest(1, 2, ElevatorState.UP));
+        elevatorSystem.addRequest(new ElevatorRequest(0, 2, ElevatorState.UP));
     }
 
     @ParameterizedTest
@@ -29,7 +29,7 @@ class ElevatorSystemImplTest {
     @DisplayName("Test for less requests than elevators")
     void testAddRequestForMultipleRequests() {
         for (int i = 0; i < 5; i++) {
-            elevatorSystem.addRequest(new ElevatorRequest(1, 20, ElevatorState.UP));
+            elevatorSystem.addRequest(new ElevatorRequest(0, 20, ElevatorState.UP));
         }
     }
 
@@ -38,7 +38,7 @@ class ElevatorSystemImplTest {
     @DisplayName("Test for more requests than elevators")
     void testForMultipleRequests(int numberOfRequests) {
         for (int i = 0; i < numberOfRequests; i++) {
-            elevatorSystem.addRequest(new ElevatorRequest(1, 20, ElevatorState.UP));
+            elevatorSystem.addRequest(new ElevatorRequest(0, 20, ElevatorState.UP));
         }
     }
 
