@@ -11,10 +11,6 @@ public class ElevatorRequest {
     private final ElevatorState direction;
 
     public ElevatorRequest(int originFloor, int destinationFloor, ElevatorState direction) {
-        /*
-        TODO Not quite sure why you would need direction in here... but sticking to the requirements for now.
-         We'll just use it for argument validity handling. In a real scenario, i'd try to clarify the requirements...
-         */
         checkRequestValidity(originFloor, destinationFloor, direction);
 
         this.originFloor = originFloor;
@@ -47,7 +43,7 @@ public class ElevatorRequest {
     private boolean isInvalidFloorCombination(int originFloor, int destinationFloor, ElevatorState direction) {
         return originFloor == destinationFloor
                 || direction.equals(ElevatorState.IDLE)
-                || originFloor != 0 && destinationFloor != 0 // Requests must start or end at floor 0
+                || originFloor != 0 && destinationFloor != 0 // Requests must start or end at floor 0, as per assignment
                 || originFloor < destinationFloor && direction.equals(ElevatorState.DOWN)
                 || originFloor > destinationFloor && direction.equals(ElevatorState.UP);
     }

@@ -45,7 +45,7 @@ public class ElevatorImpl implements Elevator {
             throw new RuntimeException(e);
         } finally {
             this.state = ElevatorState.IDLE;
-            logger.info("Elevator in thread " + Thread.currentThread().getName() + " is now idle");
+            logger.info("Elevator in thread " + Thread.currentThread().getName() + " has arrived is now idle.");
         }
     }
 
