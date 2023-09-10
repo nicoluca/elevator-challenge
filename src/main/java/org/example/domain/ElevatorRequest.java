@@ -22,6 +22,7 @@ public class ElevatorRequest {
         this.direction = direction;
     }
 
+    // Could be custom, more descriptive exceptions - but for assignment purposes, this should do.
     private void checkRequestValidity(int originFloor, int destinationFloor, ElevatorState direction) {
         if (isInvalidFloor(originFloor))
             throwFloorNumberException(originFloor);

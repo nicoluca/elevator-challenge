@@ -51,6 +51,13 @@ public class ElevatorSystemImpl implements ElevatorSystem {
         return this.elevators;
     }
 
+    @Override
+    public void printState() {
+        System.out.println("\n##### Elevator system state: #####");
+        for (int i = 0; i < elevators.length; i++)
+            System.out.println("Elevator " + (i+1) + " is at floor " + elevators[i].getCurrentFloor() + " and state is " + elevators[i].getState());
+    }
+
     private void assignRequestToElevator(ElevatorRequest elevatorRequest, Elevator elevator) {
         executorService.submit(
                 () -> {
