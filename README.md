@@ -32,5 +32,5 @@ The following improvements could be made, as the time and scope of this project 
 - Dependencies: JUnit 5, Lombok, JUnit Params
 
 ## Setup and Run
-Run 'mvn clean install' to build the project and run the tests. To run the simulation, run the Main class via your IDE of choice or via 'mvn exec:java -Dexec.mainClass="org.example.Main"'.
+Run `mvn clean install` to build the project and run the tests. To run the simulation, run the Main class via your IDE of choice or via `mvn exec:java -Dexec.mainClass="org.example.Main"`.
 
