@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @NoArgsConstructor
 public class IdleElevator extends AbstractElevatorPolicy {
-    // Could be a singleton
+    // TODO Could be a singleton.
 
     @Override
     public Optional<Elevator> findElevator(Elevator[] elevators) {

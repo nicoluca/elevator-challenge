@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 public class NextIdleElevator extends AbstractElevatorPolicy {
-    // Could be a singleton
+    // TODO Could be a singleton.
 
     @Override
     public Optional<Elevator> findElevator(Elevator[] elevators) {
