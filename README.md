@@ -14,8 +14,8 @@
 - Tests are implemented in [the test folder](src/test/java/org/example/domain). They are not exhaustive, but mostly for demonstration purposes.
 - The [Main class](src/main/java/org/example/Main.java) runs a simple, endless simulation of the elevator system.
 
-## Improvements/Todos
+## Possible Improvements
 The following improvements could be made, as the time and scope of this project did not allow for them:
-- Test coverage, incl edge cases.
+- Test coverage, incl. edge cases and concurrency.
 - More sophisticated policies, e.g. based on distance to destination, or based on the number of requests in the queue.
-- The alternative logic for the elevator movement (e.g. not only 3 -> 14, 14 -> 0, etc., but also 3 -> 7 -> 14, 14 -> 7 -> 0, etc.) could be implemented by interrupting the current movement (i.e. the thread in which the elevator is running), and restarting it with the new destination. This would require some refactoring of the elevator class, and the implementation of a new policy to find the next elevator to be called.
+- The alternative logic for the elevator movement with in-between stops (e.g. not only 3 -> 14, 14 -> 0, etc., but also 3 -> 7 -> 14, 14 -> 7 -> 0, etc.) could be implemented by simply interrupting the current movement (i.e. the thread in which the elevator is running), and restarting it with the new destination. This would not require changes in the Elevator class, but only in the ElevatorSystem class, and adding a new policy.
