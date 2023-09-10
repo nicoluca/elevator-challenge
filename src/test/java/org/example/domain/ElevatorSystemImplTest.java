@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import org.example.domain.policy.ElevatorPolicy;
 import org.example.domain.policy.IdleElevator;
 import org.example.domain.policy.NextIdleElevator;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +14,10 @@ class ElevatorSystemImplTest {
 
     @BeforeEach
     void setUp() {
-        this.elevatorSystem = new ElevatorSystemImpl(new ElevatorPolicy[]{new IdleElevator(), new NextIdleElevator()});
+        this.elevatorSystem = new ElevatorSystemImpl(new IdleElevator(), new NextIdleElevator());
     }
+
+    // TODO In reality, these should test the state of the elevators, not just that the requests were added, i.e. have the desired end states been achieved?
 
     @Test
     @DisplayName("Test addRequest")
