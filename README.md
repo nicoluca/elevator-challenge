@@ -22,7 +22,7 @@ The following improvements could be made, as the time and scope of this project 
 
 ## UML Class Diagram
 (Generated with IntelliJ IDEA)
-![UML](assets/img/class-uml.png
+![UML](assets/img/class-uml.png)
 
 # Requirements and Setup
 
