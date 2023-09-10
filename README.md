@@ -9,9 +9,9 @@
 
 ## Implementation Notes
 - Configuration (number of elevators etc.) is done via [Config.java](src/main/java/org/example/config/Config.java).
-- Policies for elevator selection are implemented in [the policy folder][src/main/java/org/example/domain/policy]. The implement and inherit from respective interfaces and abstract classes, and are easily extensible. The order of the policies in the list determines the order in which they are applied.
+- Policies for elevator selection are implemented in [the policy folder](src/main/java/org/example/domain/policy). The implement and inherit from respective interfaces and abstract classes, and are easily extensible. The order of the policies in the list determines the order in which they are applied.
 - Elevator, ElevatorRequest and ElevatorSystem are distinct classes (partly) implementing respective interfaces.
-- Tests are implemented in [the test folder][src/test/java/org/example/domain]. They are not exhaustive, but mostly for demonstration purposes.
+- Tests are implemented in [the test folder](src/test/java/org/example/domain). They are not exhaustive, but mostly for demonstration purposes.
 - The [Main class](src/main/java/org/example/Main.java) runs a simple, endless simulation of the elevator system.
 
 ## Improvements/Todos
