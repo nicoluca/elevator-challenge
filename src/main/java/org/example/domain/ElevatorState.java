@@ -1,6 +1,6 @@
 package org.example.domain;
 
-public enum ElevatorStatus {
+public enum ElevatorState {
     UP,
     DOWN,
     IDLE;

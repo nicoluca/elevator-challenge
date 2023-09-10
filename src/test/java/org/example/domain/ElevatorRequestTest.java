@@ -14,7 +14,7 @@ class ElevatorRequestTest {
         // given
         int originFloor = 1;
         int destinationFloor = 2;
-        ElevatorStatus direction = ElevatorStatus.UP;
+        ElevatorState direction = ElevatorState.UP;
 
         // when
         ElevatorRequest elevatorRequest = new ElevatorRequest(originFloor, destinationFloor, direction);
@@ -30,7 +30,7 @@ class ElevatorRequestTest {
     void shouldThrowExceptionWhenOriginFloorIsInvalid() {
         int originFloor = -1;
         int destinationFloor = 2;
-        ElevatorStatus direction = ElevatorStatus.UP;
+        ElevatorState direction = ElevatorState.UP;
 
         assertThrows(IllegalArgumentException.class, () -> new ElevatorRequest(originFloor, destinationFloor, direction));
     }
@@ -40,7 +40,7 @@ class ElevatorRequestTest {
     void shouldThrowExceptionWhenDestinationFloorIsInvalid() {
         int originFloor = 1;
         int destinationFloor = 100;
-        ElevatorStatus direction = ElevatorStatus.UP;
+        ElevatorState direction = ElevatorState.UP;
 
         assertThrows(IllegalArgumentException.class, () -> new ElevatorRequest(originFloor, destinationFloor, direction));
     }
@@ -50,7 +50,7 @@ class ElevatorRequestTest {
     void shouldThrowExceptionWhenOriginAndDestinationFloorAreTheSame() {
         int originFloor = 1;
         int destinationFloor = 1;
-        ElevatorStatus direction = ElevatorStatus.UP;
+        ElevatorState direction = ElevatorState.UP;
 
         assertThrows(IllegalArgumentException.class, () -> new ElevatorRequest(originFloor, destinationFloor, direction));
     }
@@ -60,7 +60,7 @@ class ElevatorRequestTest {
     void shouldThrowExceptionWhenCombinationOfOriginFloorDestinationFloorAndDirectionIsInvalid() {
         int originFloor = 1;
         int destinationFloor = 2;
-        ElevatorStatus direction = ElevatorStatus.DOWN;
+        ElevatorState direction = ElevatorState.DOWN;
 
         assertThrows(IllegalArgumentException.class, () -> new ElevatorRequest(originFloor, destinationFloor, direction));
     }

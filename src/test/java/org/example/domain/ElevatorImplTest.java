@@ -25,7 +25,7 @@ class ElevatorImplTest {
     @Test
     @DisplayName("New elevator is idle")
     void testIsMoving() {
-        assertEquals(ElevatorStatus.IDLE, elevator.getStatus());
+        assertEquals(ElevatorState.IDLE, elevator.getState());
     }
 
     @Test
@@ -55,7 +55,7 @@ class ElevatorImplTest {
     @DisplayName("Status is idle after moving")
     void testStatusAfterMoving() {
         elevator.move(1);
-        assertEquals(ElevatorStatus.IDLE, elevator.getStatus());
+        assertEquals(ElevatorState.IDLE, elevator.getState());
     }
 
     @Test
@@ -64,7 +64,7 @@ class ElevatorImplTest {
         Thread thread = new Thread(() -> elevator.move(2));
         thread.start();
         Thread.sleep(1000);
-        assertEquals(ElevatorStatus.UP, elevator.getStatus());
+        assertEquals(ElevatorState.UP, elevator.getState());
     }
 
     @Test
@@ -73,7 +73,7 @@ class ElevatorImplTest {
         Thread thread = new Thread(() -> elevator.move(-2));
         thread.start();
         Thread.sleep(1000);
-        assertEquals(ElevatorStatus.DOWN, elevator.getStatus());
+        assertEquals(ElevatorState.DOWN, elevator.getState());
     }
 
 

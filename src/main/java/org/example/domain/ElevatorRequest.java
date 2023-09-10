@@ -8,9 +8,9 @@ public class ElevatorRequest {
 
     private final int originFloor;
     private final int destinationFloor;
-    private final ElevatorStatus direction;
+    private final ElevatorState direction;
 
-    public ElevatorRequest(int originFloor, int destinationFloor, ElevatorStatus direction) {
+    public ElevatorRequest(int originFloor, int destinationFloor, ElevatorState direction) {
         /*
         TODO Not quite sure why you would need direction in here... but sticking to the requirements for now.
          We'll just use it for argument validity handling. In a real scenario, i'd try to clarify the requirements...
@@ -22,7 +22,7 @@ public class ElevatorRequest {
         this.direction = direction;
     }
 
-    private void checkRequestValidity(int originFloor, int destinationFloor, ElevatorStatus direction) {
+    private void checkRequestValidity(int originFloor, int destinationFloor, ElevatorState direction) {
         if (isInvalidFloor(originFloor))
             throwFloorNumberException(originFloor);
         if (isInvalidFloor(destinationFloor))
@@ -43,10 +43,19 @@ public class ElevatorRequest {
         return floor < Config.MINIMUM_FLOOR || floor > Config.MAXIMUM_FLOOR;
     }
 
-    private boolean isInvalidFloorCombination(int originFloor, int destinationFloor, ElevatorStatus direction) {
+    private boolean isInvalidFloorCombination(int originFloor, int destinationFloor, ElevatorState direction) {
         return originFloor == destinationFloor
-                || originFloor < destinationFloor && direction.equals(ElevatorStatus.DOWN)
-                || originFloor > destinationFloor && direction.equals(ElevatorStatus.UP);
+                || originFloor < destinationFloor && direction.equals(ElevatorState.DOWN)
+                || originFloor > destinationFloor && direction.equals(ElevatorState.UP);
+    }
+
+    @Override
+    public String toString() {
+        return "ElevatorRequest{" +
+                "originFloor=" + originFloor +
+                ", destinationFloor=" + destinationFloor +
+                ", direction=" + direction +
+                '}';
     }
 
 }
