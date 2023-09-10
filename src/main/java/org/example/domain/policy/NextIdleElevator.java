@@ -14,7 +14,7 @@ public class NextIdleElevator extends AbstractElevatorPolicy {
         logger.info("Looking for the elevator that will be idle the soonest...");
 
         Optional<Elevator> optionalElevator = Arrays.stream(elevators)
-                .min(Comparator.comparingInt(Elevator::getCurrentDelta));
+                .min(Comparator.comparingInt(elevator -> Math.abs(elevator.getDeltaToDestination())));
 
         if (optionalElevator.isPresent()) {
             logger.info("Found elevator " + optionalElevator.get() + " that will be idle the soonest");

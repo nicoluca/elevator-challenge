@@ -11,12 +11,12 @@ public class ElevatorImpl implements Elevator {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private int currentFloor = 0;
     private ElevatorState state = ElevatorState.IDLE;
-    private int currentDelta = 0;
+    private int deltaToDestination = 0;
 
     @Override
     public void move(int toFloor) {
         this.state = toFloor > this.currentFloor ? ElevatorState.UP : ElevatorState.DOWN;
-        this.currentDelta = toFloor - this.currentFloor;
+        this.deltaToDestination = toFloor - this.currentFloor; // Can be negative if going down.
         startMoving(toFloor);
     }
 
@@ -31,8 +31,8 @@ public class ElevatorImpl implements Elevator {
     }
 
     @Override
-    public synchronized int getCurrentDelta() {
-        return this.currentDelta;
+    public synchronized int getDeltaToDestination() {
+        return this.deltaToDestination;
     }
 
     private void startMoving(int toFloor) {
@@ -53,7 +53,7 @@ public class ElevatorImpl implements Elevator {
         while (this.currentFloor != toFloor) {
             Thread.sleep(Config.TIME_BETWEEN_FLOORS_IN_MS); // Simulate moving
             this.currentFloor = this.currentFloor < toFloor ? this.currentFloor + 1 : this.currentFloor - 1;
-            this.currentDelta = toFloor - this.currentFloor;
+            this.deltaToDestination = toFloor - this.currentFloor;
             logger.info("Elevator in thread " + Thread.currentThread().getName() + " is now at floor " + this.currentFloor);
         }
     }

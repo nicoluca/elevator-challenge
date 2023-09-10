@@ -20,6 +20,10 @@ The following improvements could be made, as the time and scope of this project 
 - More sophisticated policies, e.g. based on distance to destination, or based on the number of requests in the queue.
 - The alternative logic for the elevator movement with in-between stops (e.g. not only 3 -> 14, 14 -> 0, etc., but also 3 -> 7 -> 14, 14 -> 7 -> 0, etc.) could be implemented by simply interrupting the current movement (i.e. the thread in which the elevator is running), and restarting it with the new destination. This would not require changes in the Elevator class, but only in the ElevatorSystem class, and adding a new policy.
 
+## UML Class Diagram
+(Generated with IntelliJ IDEA)
+![UML](assets/img/class-uml.png
+
 # Requirements and Setup
 
 ## Requirements

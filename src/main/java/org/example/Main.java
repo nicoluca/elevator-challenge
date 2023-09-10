@@ -19,17 +19,19 @@ public class Main {
         System.out.println("Running some random requests...\n");
 
         ElevatorSystem elevatorSystem = new ElevatorSystemImpl(new ElevatorPolicy[]{new IdleElevator(), new NextIdleElevator()});
+        Random random = new Random();
 
         while (true) {
             elevatorSystem.printState();
 
-            int originFloor = new Random().nextInt(Config.MAXIMUM_FLOOR);
+            // Add a random request going down.
+            int originFloor = random.nextInt(Config.MAXIMUM_FLOOR);
             elevatorSystem.addRequest(new ElevatorRequest(originFloor, 0, ElevatorState.DOWN));
-            int destinationFloor = new Random().nextInt(Config.MAXIMUM_FLOOR);
+            // Add a random request going up.
+            int destinationFloor = random.nextInt(Config.MAXIMUM_FLOOR) + 1;
             elevatorSystem.addRequest(new ElevatorRequest(0, destinationFloor, ElevatorState.UP));
 
-            Thread.sleep(10000);
-
+            Thread.sleep(10000); // Configure this to change the speed of the simulation.
         }
     }
 }

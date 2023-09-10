@@ -12,7 +12,7 @@ public class ElevatorSystemImpl implements ElevatorSystem {
 
     private final Logger logger = Logger.getLogger(getClass().getName());
 
-    private final Elevator[] elevators = new Elevator[Config.NUMBER_OF_ELEVATORS];
+    private final Elevator[] elevators = new Elevator[Config.NUMBER_OF_ELEVATORS]; // As streams are used in the policies, we could consider using a list instead.
 
     // Using a thread pool to simulate multiple elevators moving at the same time.
     // This gives us the ability to just submit a task to the thread pool, and it will be executed when a thread is available.
@@ -53,8 +53,10 @@ public class ElevatorSystemImpl implements ElevatorSystem {
     }
 
     private void assignRequestToElevator(ElevatorRequest elevatorRequest, Elevator elevator) {
+        // As described above, we submit a task to the thread pool, and it will be executed when a thread is available, i.e. when the elevator is idle.
         executorService.submit(
                 () -> {
+                    // We move the elevator to the origin floor, and then to the destination floor (starting from the current floor).
                     elevator.move(elevatorRequest.getOriginFloor());
                     elevator.move(elevatorRequest.getDestinationFloor());
                 }
