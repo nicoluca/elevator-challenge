@@ -17,7 +17,7 @@ class ElevatorSystemImplTest {
         this.elevatorSystem = new ElevatorSystemImpl(new IdleElevator(), new NextIdleElevator());
     }
 
-    // TODO In reality, these should test the state of the elevators, not just that the requests were added, i.e. have the desired end states been achieved?
+    // TODO In reality, these should test the state of the elevators, not just that the requests were added without exceptions, i.e. have the desired end states been achieved?
 
     @Test
     @DisplayName("Test addRequest")
