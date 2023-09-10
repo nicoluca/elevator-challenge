@@ -11,7 +11,6 @@ public class ElevatorImpl implements Elevator {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private int currentFloor = 0;
     private ElevatorState state = ElevatorState.IDLE;
-
     private int currentDelta = 0;
 
     @Override
@@ -26,6 +25,7 @@ public class ElevatorImpl implements Elevator {
         return this.currentFloor;
     }
 
+    @Override
     public synchronized ElevatorState getState() {
         return this.state;
     }
