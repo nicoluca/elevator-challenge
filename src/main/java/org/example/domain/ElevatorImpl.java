@@ -1,9 +1,8 @@
 package org.example.domain;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.config.Config;
 
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @NoArgsConstructor
@@ -20,9 +19,6 @@ public class ElevatorImpl implements Elevator {
         this.state = toFloor > this.currentFloor ? ElevatorState.UP : ElevatorState.DOWN;
         this.currentDelta = toFloor - this.currentFloor;
         startMoving(toFloor);
-
-        // TODO Elevators first need to start at current floor, then go to origin, then destination, but this should be implemented in controller
-        // TODO Elevators should probably return to floor 0 if idle?
     }
 
     @Override
@@ -55,7 +51,7 @@ public class ElevatorImpl implements Elevator {
 
     private void moveElevator(int toFloor) throws InterruptedException {
         while (this.currentFloor != toFloor) {
-            Thread.sleep(1000);
+            Thread.sleep(Config.TIME_BETWEEN_FLOORS_IN_MS); // Simulate moving
             this.currentFloor = this.currentFloor < toFloor ? this.currentFloor + 1 : this.currentFloor - 1;
             this.currentDelta = toFloor - this.currentFloor;
             logger.info("Elevator in thread " + Thread.currentThread().getName() + " is now at floor " + this.currentFloor);
