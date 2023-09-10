@@ -45,6 +45,8 @@ public class ElevatorRequest {
 
     private boolean isInvalidFloorCombination(int originFloor, int destinationFloor, ElevatorState direction) {
         return originFloor == destinationFloor
+                || direction.equals(ElevatorState.IDLE)
+                || originFloor != 0 && destinationFloor != 0 // Requests must start or end at floor 0
                 || originFloor < destinationFloor && direction.equals(ElevatorState.DOWN)
                 || originFloor > destinationFloor && direction.equals(ElevatorState.UP);
     }
