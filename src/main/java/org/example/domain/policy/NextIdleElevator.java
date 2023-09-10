@@ -2,7 +2,6 @@ package org.example.domain.policy;
 
 import org.example.domain.Elevator;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;

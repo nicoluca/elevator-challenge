@@ -16,7 +16,9 @@ public class ElevatorSystemImpl implements ElevatorSystem {
 
     private final Elevator[] elevators = new Elevator[Config.NUMBER_OF_ELEVATORS];
     private final ExecutorService executorService = Executors.newFixedThreadPool(Config.NUMBER_OF_ELEVATORS);
-    private final ElevatorPolicy[] nextElevatorPolicies; // The idea is to have a chain of responsibility of policies, that can be flexibly configured/extended.
+    // The idea is to have a chain of responsibility of policies, that can be flexibly configured/extended.
+    // For demo purposes, only simple policies are implemented. Extension could be examining the destination floor etc.
+    private final ElevatorPolicy[] nextElevatorPolicies;
 
     public ElevatorSystemImpl(ElevatorPolicy[] nextElevatorPolicies) {
         for (int i = 0; i < elevators.length; i++)
@@ -66,7 +68,8 @@ public class ElevatorSystemImpl implements ElevatorSystem {
     public void printState() {
         System.out.println("\n##### Elevator system state: #####");
         for (int i = 0; i < elevators.length; i++)
-            System.out.println("Elevator " + (i+1) + " is at floor " + elevators[i].getCurrentFloor() + " and state is " + elevators[i].getState());
+            System.out.println("Elevator " + (i+1) + " is at floor " + elevators[i].getCurrentFloor()
+                    + " and movement state is " + elevators[i].getState());
     }
 
     private void assignRequestToElevator(ElevatorRequest elevatorRequest, Elevator elevator) {

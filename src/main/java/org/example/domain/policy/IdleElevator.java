@@ -14,8 +14,9 @@ public class IdleElevator extends AbstractElevatorPolicy {
     @Override
     public Optional<Elevator> findElevator(Elevator[] elevators) {
         logger.info("Looking for an idle elevator...");
-        Optional<Elevator> optionalElevator = Arrays.stream(elevators).findFirst().filter(
-                elevator -> elevator.getState() == ElevatorState.IDLE);
+        Optional<Elevator> optionalElevator = Arrays.stream(elevators)
+                .filter(elevator -> elevator.getState() == ElevatorState.IDLE)
+                .findFirst();
 
         if (optionalElevator.isPresent()) {
             logger.info("Found idle elevator " + optionalElevator.get());
