@@ -1,6 +1,8 @@
 package org.example.domain;
 
-@FunctionalInterface
+import java.util.concurrent.ExecutorService;
+
 public interface ElevatorSystem {
     void addRequest(ElevatorRequest elevatorRequest);
+    Elevator[] getElevators();
 }

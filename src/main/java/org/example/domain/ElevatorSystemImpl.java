@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import lombok.Getter;
 import org.example.config.Config;
 
 import java.util.Arrays;
@@ -8,7 +9,6 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
-
 
 public class ElevatorSystemImpl implements ElevatorSystem {
 
@@ -44,6 +44,11 @@ public class ElevatorSystemImpl implements ElevatorSystem {
         Elevator elevator = getNextIdleElevator();
         assignRequestToElevator(elevatorRequest, elevator);
 
+    }
+
+    @Override
+    public Elevator[] getElevators() {
+        return this.elevators;
     }
 
     private void assignRequestToElevator(ElevatorRequest elevatorRequest, Elevator elevator) {
